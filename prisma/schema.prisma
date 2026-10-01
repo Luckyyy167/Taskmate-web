@@ -1,0 +1,65 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum Category {
+  COLLEGE
+  ASSIGNMENT
+  PERSONAL
+  PROJECT
+  EXAM
+}
+
+enum Status {
+  TODO
+  IN_PROGRESS
+  COMPLETED
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String   @db.VarChar(100)
+  email        String   @unique @db.VarChar(255)
+  passwordHash String   @db.VarChar(255)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  tasks        Task[]
+}
+
+model Task {
+  id          String    @id @default(uuid())
+  userId      String
+  title       String    @db.VarChar(100)
+  description String?   @db.VarChar(500)
+  dueDate     DateTime  @db.Date
+  dueTime     String?   @db.VarChar(5) // Format HH:mm
+  priority    Priority  @default(MEDIUM)
+  category    Category
+  status      Status    @default(TODO)
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relasi One-to-Many dengan Cascade Delete
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Indeks untuk mengoptimalkan kueri
+  @@index([userId, dueDate])
+  @@index([userId, status])
+  @@index([userId, category])
+  @@index([userId, completedAt])
+}

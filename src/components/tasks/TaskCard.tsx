@@ -73,22 +73,6 @@ export function TaskCard({ task, onComplete, onEdit, onDelete, completing }: Tas
           <p className="task-description">{task.description}</p>
         )}
 
-        {task.reference_url && (
-          <div style={{ marginBottom: '8px' }}>
-            <a
-              href={task.reference_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="task-reference-link"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: 'var(--color-primary)', background: 'var(--color-primary-soft, #e0e7ff)', padding: '4px 8px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <LinkIcon size={12} />
-              Open Attachment
-            </a>
-          </div>
-        )}
-
         <div className="task-meta">
           {/* Due date */}
           <span className={`task-meta-item${isOverdue ? ' overdue' : ''}`} style={isOverdue ? { color: 'var(--color-danger)' } : {}}>

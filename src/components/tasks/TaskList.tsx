@@ -3,6 +3,7 @@
 import { useState, useCallback } from 'react';
 import { Plus, Search } from 'lucide-react';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import { NotificationBell } from '@/components/layout/NotificationBell';
 import { TaskCard, TaskCardSkeleton } from './TaskCard';
 import { TaskModal } from './TaskModal';
 import { DeleteConfirmModal } from './DeleteConfirmModal';
@@ -167,14 +168,16 @@ export function TaskList({
           )}
 
           {showCreate && (
-            <button
-              className="btn btn-primary btn-sm"
-              onClick={() => setCreateOpen(true)}
-              style={{ marginLeft: 'auto' }}
-              id="create-task-btn"
-            >
-              <Plus size={16} /> Add Task
-            </button>
+            <div className="header-actions" style={{ marginLeft: 'auto' }}>
+              <NotificationBell />
+              <button
+                className="btn btn-primary btn-sm"
+                onClick={() => setCreateOpen(true)}
+                id="create-task-btn"
+              >
+                <Plus size={16} /> Add Task
+              </button>
+            </div>
           )}
         </div>
       )}

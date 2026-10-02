@@ -6,6 +6,7 @@ import { useAuth } from '@/components/providers/AuthProvider';
 import { TaskCard, TaskCardSkeleton } from '@/components/tasks/TaskCard';
 import { TaskModal } from '@/components/tasks/TaskModal';
 import { DeleteConfirmModal } from '@/components/tasks/DeleteConfirmModal';
+import { NotificationBell } from '@/components/layout/NotificationBell';
 import type { Task, TaskSummary } from '@/types';
 
 function getGreeting(): string {
@@ -104,13 +105,16 @@ export default function DashboardPage() {
             </h1>
             <p className="page-subtitle">Here&apos;s what&apos;s happening with your academic tasks today.</p>
           </div>
-          <button
-            className="btn btn-primary"
-            onClick={() => setCreateOpen(true)}
-            id="dashboard-create-task-btn"
-          >
-            <Plus size={18} /> Add Task
-          </button>
+          <div className="header-actions">
+            <NotificationBell />
+            <button
+              className="btn btn-primary"
+              onClick={() => setCreateOpen(true)}
+              id="dashboard-create-task-btn"
+            >
+              <Plus size={18} /> Add Task
+            </button>
+          </div>
         </div>
       </div>
 

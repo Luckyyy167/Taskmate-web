@@ -199,6 +199,28 @@ export function TaskModal({ mode, task, onClose, onSuccess, defaultCategory }: T
               )}
             </div>
 
+            {/* Reference URL */}
+            <div className="form-group">
+              <label htmlFor="task-reference-url" className="form-label">Reference Link / Attachment</label>
+              <input
+                id="task-reference-url"
+                name="reference_url"
+                type="url"
+                className={`form-input${errors.reference_url ? ' error' : ''}`}
+                placeholder="e.g., https://docs.google.com/..."
+                value={form.reference_url}
+                onChange={handleChange}
+                maxLength={1000}
+                aria-invalid={!!errors.reference_url}
+                aria-describedby={errors.reference_url ? 'url-error' : undefined}
+              />
+              {errors.reference_url && (
+                <span id="url-error" className="form-error" role="alert">
+                  <AlertCircle size={12} /> {errors.reference_url}
+                </span>
+              )}
+            </div>
+
             {/* Category + Priority */}
             <div className="form-row">
               <div className="form-group">

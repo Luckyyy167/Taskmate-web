@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Check, AlertCircle, Pencil, Trash2, RotateCcw } from 'lucide-react';
+import { Check, AlertCircle, Pencil, Trash2, RotateCcw, Link as LinkIcon } from 'lucide-react';
 import type { Task } from '@/types';
 import { formatDate, formatTime, getRelativeDate } from '@/lib/date-helpers';
 import Link from 'next/link';
@@ -71,6 +71,22 @@ export function TaskCard({ task, onComplete, onEdit, onDelete, completing }: Tas
 
         {task.description && (
           <p className="task-description">{task.description}</p>
+        )}
+
+        {task.reference_url && (
+          <div style={{ marginBottom: '8px' }}>
+            <a
+              href={task.reference_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="task-reference-link"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: 'var(--color-primary)', background: 'var(--color-primary-soft, #e0e7ff)', padding: '4px 8px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <LinkIcon size={12} />
+              Open Attachment
+            </a>
+          </div>
         )}
 
         <div className="task-meta">

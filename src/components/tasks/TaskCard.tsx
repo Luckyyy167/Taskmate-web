@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Check, AlertCircle, Pencil, Trash2, RotateCcw, Link as LinkIcon } from 'lucide-react';
+import { Check, AlertCircle, Pencil, Trash2, RotateCcw } from 'lucide-react';
 import type { Task } from '@/types';
 import { formatDate, formatTime, getRelativeDate } from '@/lib/date-helpers';
 import Link from 'next/link';
